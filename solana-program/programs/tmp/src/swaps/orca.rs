@@ -43,6 +43,7 @@ impl<'info> OrcaSwap<'info> {
         amount_in: u64,
         minimum_amount_out: u64,
     ) -> Result<()> {
+        require!(amount_in > 0, ErrorCode::InvalidSwapAmount);
         let ix_data = {
             let mut data = Vec::with_capacity(32);
             data.extend_from_slice(&[2]); // Swap instruction discriminator
